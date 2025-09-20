@@ -29,14 +29,14 @@ const Navigation = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full bg-gradient-emerald flex items-center justify-center">
               <div className="w-4 h-4 bg-background rounded-full"></div>
             </div>
-            <span className="text-xl font-bold gradient-text">Green Trail</span>
+            <span className="text-xl font-bold text-white">Thrill Trail</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -45,7 +45,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+                className="text-white/80 hover:text-white transition-colors duration-300 font-medium"
               >
                 {item.name}
               </a>
@@ -54,7 +54,11 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button variant="default" size="lg" className="bg-gradient-emerald hover:scale-105 transition-transform duration-300 glow">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white"
+            >
               Get Started
             </Button>
           </div>
@@ -62,32 +66,11 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden p-2 text-white hover:text-primary transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 p-4 glass rounded-lg animate-fade-in">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <Button variant="default" size="lg" className="bg-gradient-emerald mt-4">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );

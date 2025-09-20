@@ -2,149 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Travel website design system with green branding theme
-All colors MUST be HSL for consistency and theming
-*/
-
 @layer base {
   :root {
-    /* Base colors */
-    --background: 220 15% 3%;
-    --foreground: 140 5% 96%;
-
-    /* Card colors */
-    --card: 220 15% 5%;
-    --card-foreground: 140 5% 96%;
-
-    /* Popover colors */
-    --popover: 220 15% 4%;
-    --popover-foreground: 140 5% 96%;
-
-    /* Primary green theme */
+    /* Green Brand Colors */
+    --background: 210 20% 8%;
+    --foreground: 210 40% 98%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
     --primary: 142 76% 36%;
-    --primary-foreground: 140 5% 96%;
-    --primary-glow: 142 85% 45%;
-    --primary-dark: 142 76% 25%;
-
-    /* Secondary green variations */
-    --secondary: 140 20% 15%;
-    --secondary-foreground: 140 10% 85%;
-
-    /* Muted colors */
-    --muted: 220 15% 8%;
-    --muted-foreground: 140 5% 65%;
-
-    /* Accent colors */
-    --accent: 145 85% 47%;
-    --accent-foreground: 140 5% 96%;
-
-    /* Status colors */
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 142 76% 46%;
+    --primary-dark: 142 76% 26%;
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-
-    /* Interface elements */
-    --border: 220 15% 12%;
-    --input: 220 15% 12%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
     --ring: 142 76% 36%;
-
-    /* Design tokens */
     --radius: 0.75rem;
-    
-    /* Travel-specific gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(145 85% 47%) 50%, hsl(142 76% 25%) 100%);
-    --gradient-emerald: linear-gradient(135deg, hsl(142 76% 36%), hsl(140 85% 55%));
-    --gradient-forest: linear-gradient(135deg, hsl(142 76% 25%), hsl(142 76% 36%));
-    --gradient-overlay: linear-gradient(180deg, hsl(220 15% 3% / 0.9), hsl(220 15% 3% / 0.6));
-    --gradient-glass: linear-gradient(135deg, hsl(140 20% 15% / 0.1), hsl(142 76% 36% / 0.1));
-    
-    /* Animation properties */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
+
+    /* Green Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(165 76% 36%) 50%, hsl(180 76% 46%) 100%);
+    --gradient-emerald: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 76% 46%) 100%);
+    --gradient-forest: linear-gradient(135deg, hsl(120 76% 16%) 0%, hsl(142 76% 26%) 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+
     /* Shadows */
-    --shadow-glow: 0 0 50px hsl(142 76% 36% / 0.3);
-    --shadow-card: 0 10px 40px hsl(220 15% 3% / 0.4);
-    --shadow-premium: 0 20px 60px hsl(142 76% 36% / 0.2);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .light {
-    /* Light mode override for travel theme */
-    --background: 140 15% 97%;
-    --foreground: 220 15% 10%;
-    --card: 140 15% 99%;
-    --card-foreground: 220 15% 10%;
-    --muted: 140 15% 90%;
-    --muted-foreground: 220 15% 40%;
-    --border: 140 15% 85%;
-    --input: 140 15% 85%;
-    --gradient-overlay: linear-gradient(180deg, hsl(140 15% 97% / 0.9), hsl(140 15% 97% / 0.6));
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground overflow-x-hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    --shadow-glow: 0 0 40px hsl(142 76% 36% / 0.3);
+    --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    --shadow-premium: 0 20px 40px -12px hsl(142 76% 36% / 0.4);
   }
 }
 
 @layer components {
-  /* Glass morphism effect */
   .glass {
-    backdrop-filter: blur(20px);
-    background: var(--gradient-glass);
-    border: 1px solid hsl(140 20% 25% / 0.2);
+    @apply bg-background/20 backdrop-blur-lg border border-border/30;
   }
 
-  /* Hero gradient text */
+  .glass-card {
+    @apply bg-background/10 backdrop-blur-md border border-white/20;
+  }
+
   .gradient-text {
-    background: var(--gradient-emerald);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent;
   }
 
-  /* Glow effect */
-  .glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  /* Hover animations */
   .hover-lift {
-    transition: var(--transition-smooth);
-  }
-  
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-premium);
+    @apply transition-transform duration-300 hover:scale-105 hover:shadow-premium;
   }
 
-  /* Video overlay */
+  .glow {
+    @apply shadow-glow;
+  }
+
   .video-overlay {
-    background: var(--gradient-overlay);
+    @apply bg-gradient-overlay;
+  }
+
+  .timeline-line {
+    @apply relative before:absolute before:left-6 before:top-0 before:h-full before:w-0.5 before:bg-primary/30;
+  }
+
+  .timeline-dot {
+    @apply relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-lg;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-custom {
+    @apply mx-auto max-w-7xl section-padding;
   }
 }
