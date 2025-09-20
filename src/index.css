@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Travel website design system with green branding theme
+All colors MUST be HSL for consistency and theming
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors */
+    --background: 220 15% 3%;
+    --foreground: 140 5% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card colors */
+    --card: 220 15% 5%;
+    --card-foreground: 140 5% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popover colors */
+    --popover: 220 15% 4%;
+    --popover-foreground: 140 5% 96%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary green theme */
+    --primary: 142 76% 36%;
+    --primary-foreground: 140 5% 96%;
+    --primary-glow: 142 85% 45%;
+    --primary-dark: 142 76% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary green variations */
+    --secondary: 140 20% 15%;
+    --secondary-foreground: 140 10% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted colors */
+    --muted: 220 15% 8%;
+    --muted-foreground: 140 5% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent colors */
+    --accent: 145 85% 47%;
+    --accent-foreground: 140 5% 96%;
 
-    --destructive: 0 84.2% 60.2%;
+    /* Status colors */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Interface elements */
+    --border: 220 15% 12%;
+    --input: 220 15% 12%;
+    --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    /* Design tokens */
+    --radius: 0.75rem;
+    
+    /* Travel-specific gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(145 85% 47%) 50%, hsl(142 76% 25%) 100%);
+    --gradient-emerald: linear-gradient(135deg, hsl(142 76% 36%), hsl(140 85% 55%));
+    --gradient-forest: linear-gradient(135deg, hsl(142 76% 25%), hsl(142 76% 36%));
+    --gradient-overlay: linear-gradient(180deg, hsl(220 15% 3% / 0.9), hsl(220 15% 3% / 0.6));
+    --gradient-glass: linear-gradient(135deg, hsl(140 20% 15% / 0.1), hsl(142 76% 36% / 0.1));
+    
+    /* Animation properties */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 50px hsl(142 76% 36% / 0.3);
+    --shadow-card: 0 10px 40px hsl(220 15% 3% / 0.4);
+    --shadow-premium: 0 20px 60px hsl(142 76% 36% / 0.2);
 
     --sidebar-background: 0 0% 98%;
 
@@ -55,42 +83,17 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  .light {
+    /* Light mode override for travel theme */
+    --background: 140 15% 97%;
+    --foreground: 220 15% 10%;
+    --card: 140 15% 99%;
+    --card-foreground: 220 15% 10%;
+    --muted: 140 15% 90%;
+    --muted-foreground: 220 15% 40%;
+    --border: 140 15% 85%;
+    --input: 140 15% 85%;
+    --gradient-overlay: linear-gradient(180deg, hsl(140 15% 97% / 0.9), hsl(140 15% 97% / 0.6));
   }
 }
 
@@ -100,6 +103,48 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(20px);
+    background: var(--gradient-glass);
+    border: 1px solid hsl(140 20% 25% / 0.2);
+  }
+
+  /* Hero gradient text */
+  .gradient-text {
+    background: var(--gradient-emerald);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effect */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Hover animations */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-premium);
+  }
+
+  /* Video overlay */
+  .video-overlay {
+    background: var(--gradient-overlay);
   }
 }
