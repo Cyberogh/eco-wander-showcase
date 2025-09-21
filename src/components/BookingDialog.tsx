@@ -2,7 +2,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MapPin, Users, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
@@ -17,28 +16,27 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
   const [adults, setAdults] = useState(2);
   const [kids, setKids] = useState(0);
 
-  const nationalDestinations = [
-    "Munsiyari",
-    "Nainital to Mukteshwar", 
-    "Teerthanjeevi",
-    "Tawang, Arunachal Pradesh",
-    "Masuri",
-    "Landoor",
-    "Rishikesh",
-    "Sukhu Valley"
-  ];
-
-  const internationalDestinations = [
-    "Nepal",
-    "Thailand", 
-    "Malaysia",
-    "Maldives",
-    "Sri Lanka"
+  const destinations = [
+    { label: "--- National Destinations ---", value: "", disabled: true },
+    { label: "Munsiyari", value: "Munsiyari" },
+    { label: "Nainital to Mukteshwar", value: "Nainital to Mukteshwar" },
+    { label: "Teerthanjeevi", value: "Teerthanjeevi" },
+    { label: "Tawang, Arunachal Pradesh", value: "Tawang, Arunachal Pradesh" },
+    { label: "Masuri", value: "Masuri" },
+    { label: "Landoor", value: "Landoor" },
+    { label: "Rishikesh", value: "Rishikesh" },
+    { label: "Sukhu Valley", value: "Sukhu Valley" },
+    { label: "--- International Destinations ---", value: "", disabled: true },
+    { label: "Nepal", value: "Nepal" },
+    { label: "Thailand", value: "Thailand" },
+    { label: "Malaysia", value: "Malaysia" },
+    { label: "Maldives", value: "Maldives" },
+    { label: "Sri Lanka", value: "Sri Lanka" }
   ];
 
   const handleSendInquiry = () => {
     const message = `Hi, I am interested in ${selectedDestination} from ${selectedDate}. ${adults} adults${kids > 0 ? ` and ${kids} kids` : ''} are going.`;
-    const whatsappUrl = `https://wa.me/YOUR_WHATSAPP_NUMBER?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     onOpenChange(false);
   };
@@ -55,41 +53,26 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
           <div className="space-y-3">
             <label className="text-sm font-medium flex items-center gap-2 text-white/90">
               <MapPin size={16} className="text-primary" />
-              Select Destination
+              Choose Your Destination
             </label>
             
-            <Tabs defaultValue="national" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-background/50">
-                <TabsTrigger value="national" className="text-white data-[state=active]:bg-primary">National</TabsTrigger>
-                <TabsTrigger value="international" className="text-white data-[state=active]:bg-primary">International</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="national" className="mt-3">
-                <Select onValueChange={setSelectedDestination}>
-                  <SelectTrigger className="bg-background/30 border-white/20 text-white">
-                    <SelectValue placeholder="Choose national destination" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-background border-border">
-                    {nationalDestinations.map((dest) => (
-                      <SelectItem key={dest} value={dest}>{dest}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </TabsContent>
-              
-              <TabsContent value="international" className="mt-3">
-                <Select onValueChange={setSelectedDestination}>
-                  <SelectTrigger className="bg-background/30 border-white/20 text-white">
-                    <SelectValue placeholder="Choose international destination" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-background border-border">
-                    {internationalDestinations.map((dest) => (
-                      <SelectItem key={dest} value={dest}>{dest}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </TabsContent>
-            </Tabs>
+            <Select onValueChange={setSelectedDestination}>
+              <SelectTrigger className="bg-background/30 border-white/20 text-white">
+                <SelectValue placeholder="Select destination" />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-border">
+                {destinations.map((dest) => (
+                  <SelectItem 
+                    key={dest.label} 
+                    value={dest.value}
+                    disabled={dest.disabled}
+                    className={dest.disabled ? "text-primary font-semibold" : ""}
+                  >
+                    {dest.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Date Selection */}
@@ -102,7 +85,8 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
               type="date" 
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-background/30 border-white/20 text-white"
+              className="bg-background/30 border-white/20 text-white cursor-pointer"
+              onClick={(e) => e.currentTarget.showPicker?.()}
             />
           </div>
 

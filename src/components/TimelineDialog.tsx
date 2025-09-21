@@ -9,6 +9,316 @@ interface TimelineDialogProps {
 }
 
 const itinerariesData = {
+  colombo: {
+    title: "Colombo Adventure",
+    duration: "3 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Arrival & City Tour",
+        activities: ["Arrive at Colombo Airport", "City tour and colonial architecture", "Temple visits", "Evening at Galle Face Green"]
+      },
+      {
+        day: 2,
+        title: "Adventure & Culture",
+        activities: ["Wildlife safari", "Traditional spice gardens", "Local cuisine experience", "Cultural performances"]
+      },
+      {
+        day: 3,
+        title: "Relaxation & Departure",
+        activities: ["Beach relaxation", "Shopping at local markets", "Sunset views", "Departure"]
+      }
+    ],
+    inclusions: [
+      "Airport transfers",
+      "Hotel accommodation",
+      "All meals",
+      "Sightseeing tours",
+      "Entry tickets"
+    ],
+    exclusions: [
+      "International flights",
+      "Personal expenses",
+      "Travel insurance",
+      "Tips"
+    ],
+    thingsToCarry: [
+      "Light cotton clothing",
+      "Sunscreen",
+      "Camera",
+      "Comfortable walking shoes"
+    ]
+  },
+  nepal: {
+    title: "Nepal Adventure", 
+    duration: "5 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Arrival in Kathmandu",
+        activities: ["Airport pickup", "Hotel check-in", "Kathmandu city tour", "Evening welcome dinner"]
+      },
+      {
+        day: 2,
+        title: "Temples & Culture",
+        activities: ["Pashupatinath Temple", "Boudhanath Stupa", "Patan Durbar Square", "Traditional craft workshops"]
+      },
+      {
+        day: 3,
+        title: "Mountain Views",
+        activities: ["Early morning mountain flight", "Nagarkot sunrise", "Hiking trails", "Local village visits"]
+      },
+      {
+        day: 4,
+        title: "Adventure Activities",
+        activities: ["White water rafting", "Adventure sports", "Nature walks", "Cultural evening"]
+      },
+      {
+        day: 5,
+        title: "Departure",
+        activities: ["Last minute shopping", "Airport transfer", "Departure"]
+      }
+    ],
+    inclusions: [
+      "All accommodation",
+      "Daily meals",
+      "Transportation",
+      "Guide services",
+      "Entry permits"
+    ],
+    exclusions: [
+      "International airfare",
+      "Nepal visa",
+      "Personal expenses",
+      "Travel insurance"
+    ],
+    thingsToCarry: [
+      "Warm clothing",
+      "Trekking shoes",
+      "Camera",
+      "Personal medication"
+    ]
+  },
+  thailand: {
+    title: "Thailand Explorer",
+    duration: "4 Days", 
+    timeline: [
+      {
+        day: 1,
+        title: "Bangkok Arrival",
+        activities: ["Airport transfer", "Grand Palace visit", "Temple hopping", "Street food tour"]
+      },
+      {
+        day: 2,
+        title: "Cultural Immersion",
+        activities: ["Floating markets", "Traditional massage", "Cooking class", "Chao Phraya river cruise"]
+      },
+      {
+        day: 3,
+        title: "Adventure Day",
+        activities: ["Elephant sanctuary", "Jungle trekking", "Waterfall visits", "Traditional dance show"]
+      },
+      {
+        day: 4,
+        title: "Beach & Departure",
+        activities: ["Beach relaxation", "Water sports", "Sunset views", "Departure"]
+      }
+    ],
+    inclusions: [
+      "Hotel stays",
+      "All meals",
+      "Tours and activities",
+      "Transportation",
+      "English guide"
+    ],
+    exclusions: [
+      "International flights",
+      "Travel insurance", 
+      "Personal shopping",
+      "Tips and gratuities"
+    ],
+    thingsToCarry: [
+      "Light summer clothes",
+      "Swimwear",
+      "Sunscreen",
+      "Mosquito repellent"
+    ]
+  },
+  malaysia: {
+    title: "Malaysia Discovery",
+    duration: "4 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Kuala Lumpur Arrival",
+        activities: ["City tour", "Petronas Towers", "Batu Caves", "China Town exploration"]
+      },
+      {
+        day: 2,
+        title: "Cultural Diversity",
+        activities: ["Multi-cultural districts", "Food courts", "Islamic Arts Museum", "Lake Gardens"]
+      },
+      {
+        day: 3,
+        title: "Nature & Adventure", 
+        activities: ["Genting Highlands", "Cable car rides", "Theme parks", "Cool weather experience"]
+      },
+      {
+        day: 4,
+        title: "Shopping & Departure",
+        activities: ["Shopping malls", "Local markets", "Last minute sightseeing", "Airport transfer"]
+      }
+    ],
+    inclusions: [
+      "Accommodation",
+      "Daily breakfast",
+      "City tours",
+      "Transportation",
+      "Entry tickets"
+    ],
+    exclusions: [
+      "Lunch and dinner",
+      "Personal expenses",
+      "Travel insurance",
+      "Optional activities"
+    ],
+    thingsToCarry: [
+      "Light clothing",
+      "Comfortable shoes",
+      "Light jacket",
+      "Camera"
+    ]
+  },
+  maldives: {
+    title: "Maldives Paradise",
+    duration: "3 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Island Arrival",
+        activities: ["Seaplane transfer", "Resort check-in", "Beach relaxation", "Sunset dinner"]
+      },
+      {
+        day: 2,
+        title: "Water Adventures",
+        activities: ["Snorkeling", "Diving", "Dolphin watching", "Beach activities"]
+      },
+      {
+        day: 3,
+        title: "Relaxation & Departure",
+        activities: ["Spa treatments", "Water villa experience", "Final beach time", "Departure"]
+      }
+    ],
+    inclusions: [
+      "Resort accommodation",
+      "All meals",
+      "Water activities",
+      "Transfers",
+      "Spa access"
+    ],
+    exclusions: [
+      "International flights",
+      "Alcohol",
+      "Premium spa treatments",
+      "Personal expenses"
+    ],
+    thingsToCarry: [
+      "Swimwear",
+      "Sunscreen",
+      "Light clothing",
+      "Underwater camera"
+    ]
+  },
+  "dayara-valley": {
+    title: "Dayara Valley Trek",
+    duration: "4 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Base Camp Arrival",
+        activities: ["Drive to Raithal", "Trek briefing", "Equipment check", "First day trek to Gui"]
+      },
+      {
+        day: 2,
+        title: "Valley Exploration",
+        activities: ["Trek to Dayara Bugyal", "Alpine meadows", "Snow peaks views", "Camping under stars"]
+      },
+      {
+        day: 3,
+        title: "Summit Day",
+        activities: ["Early summit attempt", "360-degree mountain views", "Photography session", "Descent to base"]
+      },
+      {
+        day: 4,
+        title: "Return Journey",
+        activities: ["Final descent", "Drive back", "Trip completion", "Certificate ceremony"]
+      }
+    ],
+    inclusions: [
+      "Professional guide",
+      "All meals during trek",
+      "Camping equipment",
+      "Safety gear",
+      "Permits"
+    ],
+    exclusions: [
+      "Personal trekking gear",
+      "Travel to base",
+      "Personal expenses",
+      "Insurance"
+    ],
+    thingsToCarry: [
+      "Trekking boots",
+      "Warm clothes",
+      "Rain gear",
+      "Personal medication"
+    ]
+  },
+  "khaliya-top": {
+    title: "Khaliya Top Trek", 
+    duration: "4 Days",
+    timeline: [
+      {
+        day: 1,
+        title: "Munsiyari Arrival",
+        activities: ["Drive to Munsiyari", "Acclimatization", "Local exploration", "Trek preparation"]
+      },
+      {
+        day: 2,
+        title: "Trek Begins",
+        activities: ["Trek to Khaliya Top", "Rhododendron forests", "Alpine meadows", "Camping"]
+      },
+      {
+        day: 3,
+        title: "Summit & Views",
+        activities: ["Panchachuli peaks views", "Photography", "Nature exploration", "Return trek"]
+      },
+      {
+        day: 4,
+        title: "Departure",
+        activities: ["Final descent", "Drive back", "Trip memories", "Departure"]
+      }
+    ],
+    inclusions: [
+      "Trekking guide",
+      "All trek meals",
+      "Camping gear",
+      "Safety equipment",
+      "Forest permits"
+    ],
+    exclusions: [
+      "Personal gear",
+      "Transportation to Munsiyari",
+      "Personal expenses",
+      "Tips"
+    ],
+    thingsToCarry: [
+      "Sturdy boots",
+      "Layered clothing",
+      "Rain protection",
+      "First aid kit"
+    ]
+  },
   munsiyari: {
     title: "Munsiyari Adventure",
     duration: "5 Days",
