@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MapPin, Users, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
@@ -16,25 +17,31 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
   const [adults, setAdults] = useState(2);
   const [kids, setKids] = useState(0);
 
-  const destinations = [
-    { label: "--- National Destinations ---", value: "", disabled: true },
-    { label: "Munsiyari", value: "Munsiyari" },
-    { label: "Nainital to Mukteshwar", value: "Nainital to Mukteshwar" },
-    { label: "Teerthanjeevi", value: "Teerthanjeevi" },
-    { label: "Tawang, Arunachal Pradesh", value: "Tawang, Arunachal Pradesh" },
-    { label: "Masuri", value: "Masuri" },
-    { label: "Landoor", value: "Landoor" },
-    { label: "Rishikesh", value: "Rishikesh" },
-    { label: "Sukhu Valley", value: "Sukhu Valley" },
-    { label: "--- International Destinations ---", value: "", disabled: true },
-    { label: "Nepal", value: "Nepal" },
-    { label: "Thailand", value: "Thailand" },
-    { label: "Malaysia", value: "Malaysia" },
-    { label: "Maldives", value: "Maldives" },
-    { label: "Sri Lanka", value: "Sri Lanka" }
+  const nationalDestinations = [
+    "Munsiyari",
+    "Nainital to Mukteshwar", 
+    "Teerthanjeevi",
+    "Tawang, Arunachal Pradesh",
+    "Masuri",
+    "Landoor",
+    "Rishikesh",
+    "Sukhu Valley"
+  ];
+
+  const internationalDestinations = [
+    "Nepal",
+    "Thailand", 
+    "Malaysia",
+    "Maldives",
+    "Sri Lanka"
   ];
 
   const handleSendInquiry = () => {
+    if (!selectedDestination || !selectedDate) {
+      alert("Please select destination and date");
+      return;
+    }
+    
     const message = `Hi, I am interested in ${selectedDestination} from ${selectedDate}. ${adults} adults${kids > 0 ? ` and ${kids} kids` : ''} are going.`;
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -43,36 +50,73 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md bg-background border-border">
+      <DialogContent className="max-w-md bg-background/95 backdrop-blur-md border-border">
         <DialogHeader>
-          <DialogTitle className="text-center text-white">Book Your Adventure</DialogTitle>
+          <DialogTitle className="text-center text-white text-xl font-bold">Book Your Adventure</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-6">
-          {/* Destination Selection */}
+          {/* Destination Selection with Tabs */}
           <div className="space-y-3">
             <label className="text-sm font-medium flex items-center gap-2 text-white/90">
               <MapPin size={16} className="text-primary" />
-              Choose Your Destination
+              Select Destination
             </label>
             
-            <Select onValueChange={setSelectedDestination}>
-              <SelectTrigger className="bg-background/30 border-white/20 text-white">
-                <SelectValue placeholder="Select destination" />
-              </SelectTrigger>
-              <SelectContent className="bg-background border-border">
-                {destinations.map((dest) => (
-                  <SelectItem 
-                    key={dest.label} 
-                    value={dest.value}
-                    disabled={dest.disabled}
-                    className={dest.disabled ? "text-primary font-semibold" : ""}
-                  >
-                    {dest.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Tabs defaultValue="national" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 bg-background/50 border border-white/20">
+                <TabsTrigger 
+                  value="national" 
+                  className="text-white data-[state=active]:bg-primary data-[state=active]:text-white"
+                >
+                  National
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="international" 
+                  className="text-white data-[state=active]:bg-primary data-[state=active]:text-white"
+                >
+                  International
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="national" className="mt-3">
+                <Select onValueChange={setSelectedDestination} value={selectedDestination}>
+                  <SelectTrigger className="bg-background/50 border-white/20 text-white h-12">
+                    <SelectValue placeholder="Choose national destination" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background/95 backdrop-blur-md border-border z-50">
+                    {nationalDestinations.map((dest) => (
+                      <SelectItem 
+                        key={dest} 
+                        value={dest}
+                        className="text-white hover:bg-primary/20 focus:bg-primary/20"
+                      >
+                        {dest}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </TabsContent>
+              
+              <TabsContent value="international" className="mt-3">
+                <Select onValueChange={setSelectedDestination} value={selectedDestination}>
+                  <SelectTrigger className="bg-background/50 border-white/20 text-white h-12">
+                    <SelectValue placeholder="Choose international destination" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background/95 backdrop-blur-md border-border z-50">
+                    {internationalDestinations.map((dest) => (
+                      <SelectItem 
+                        key={dest} 
+                        value={dest}
+                        className="text-white hover:bg-primary/20 focus:bg-primary/20"
+                      >
+                        {dest}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </TabsContent>
+            </Tabs>
           </div>
 
           {/* Date Selection */}
@@ -85,7 +129,7 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
               type="date" 
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-background/30 border-white/20 text-white cursor-pointer"
+              className="bg-background/50 border-white/20 text-white h-12"
               onClick={(e) => e.currentTarget.showPicker?.()}
             />
           </div>
@@ -98,19 +142,19 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
             </label>
             
             {/* Adults */}
-            <div className="flex items-center justify-between p-3 rounded-md bg-background/30 border border-white/20">
-              <span className="text-white">Adults</span>
+            <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-white/20">
+              <span className="text-white font-medium">Adults</span>
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setAdults(Math.max(1, adults - 1))}
-                  className="w-8 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow"
+                  className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow transition-colors"
                 >
                   <Minus size={16} className="text-white" />
                 </button>
-                <span className="text-white w-8 text-center">{adults}</span>
+                <span className="text-white w-8 text-center font-semibold text-lg">{adults}</span>
                 <button 
                   onClick={() => setAdults(adults + 1)}
-                  className="w-8 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow"
+                  className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow transition-colors"
                 >
                   <Plus size={16} className="text-white" />
                 </button>
@@ -118,19 +162,19 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
             </div>
 
             {/* Kids */}
-            <div className="flex items-center justify-between p-3 rounded-md bg-background/30 border border-white/20">
-              <span className="text-white">Kids</span>
+            <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-white/20">
+              <span className="text-white font-medium">Kids</span>
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setKids(Math.max(0, kids - 1))}
-                  className="w-8 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow"
+                  className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow transition-colors"
                 >
                   <Minus size={16} className="text-white" />
                 </button>
-                <span className="text-white w-8 text-center">{kids}</span>
+                <span className="text-white w-8 text-center font-semibold text-lg">{kids}</span>
                 <button 
                   onClick={() => setKids(kids + 1)}
-                  className="w-8 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow"
+                  className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-glow transition-colors"
                 >
                   <Plus size={16} className="text-white" />
                 </button>
@@ -142,7 +186,7 @@ export const BookingDialog = ({ open, onOpenChange }: BookingDialogProps) => {
           <Button 
             onClick={handleSendInquiry}
             disabled={!selectedDestination || !selectedDate}
-            className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition-transform duration-300 py-3 text-lg font-semibold"
+            className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition-transform duration-300 py-4 text-lg font-semibold h-14 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             size="lg"
           >
             Send Inquiry →
