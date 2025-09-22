@@ -64,7 +64,7 @@ const NationalDestinations = () => {
   };
 
   return (
-    <section id="destinations" className="py-20 bg-background">
+    <section id="destinations" data-section="national" className="py-20 bg-background">
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">

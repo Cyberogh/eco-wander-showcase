@@ -38,21 +38,50 @@ const HeroSection = () => {
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg mx-auto lg:mx-0">
               Tropical destinations that feel like a dream.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col gap-4 justify-center lg:justify-start">
               <Button 
                 size="lg" 
                 className="bg-gradient-emerald hover:scale-105 transition-transform duration-300 glow px-8 py-4 text-lg"
-                onClick={() => setIsBookingOpen(true)}
+                onClick={() => {
+                  const nationalSection = document.querySelector('[data-section="national"]');
+                  if (nationalSection) {
+                    nationalSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Explore Destinations →
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 px-8 py-4 text-lg text-white"
-              >
-                Watch Video
-              </Button>
+              
+              {/* Rating Widgets */}
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start mt-4">
+                {/* TripAdvisor Widget */}
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                  <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">TA</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-1">
+                      <span className="text-yellow-400">★★★★★</span>
+                      <span className="text-white text-sm font-semibold">4.8</span>
+                    </div>
+                    <span className="text-white/80 text-xs">TripAdvisor</span>
+                  </div>
+                </div>
+
+                {/* Google Rating Widget */}
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                  <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">G</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-1">
+                      <span className="text-yellow-400">★★★★★</span>
+                      <span className="text-white text-sm font-semibold">4.7</span>
+                    </div>
+                    <span className="text-white/80 text-xs">Google Reviews</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
