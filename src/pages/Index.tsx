@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import UpcomingTravelsSection from "@/components/UpcomingTravelsSection";
 import NationalDestinations from "@/components/NationalDestinations";
 import InternationalSection from "@/components/InternationalSection";
 import TrekkingSection from "@/components/TrekkingSection";
@@ -11,6 +12,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
+      <UpcomingTravelsSection />
       <NationalDestinations />
       <InternationalSection />
       <TrekkingSection />
