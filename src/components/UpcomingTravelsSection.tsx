@@ -62,7 +62,7 @@ const UpcomingTravelsSection = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2024-09-26T06:00:00').getTime();
+    const targetDate = new Date('2025-09-26T06:00:00').getTime();
     
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -85,27 +85,27 @@ const UpcomingTravelsSection = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-red-950/20 via-orange-950/20 to-red-950/20 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-green-950/20 via-emerald-950/20 to-green-950/20 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-green-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
       
       <div className="container-custom relative z-10">
         {/* Section Header with Urgency */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Clock4 className="text-red-400 animate-pulse" size={32} />
+            <Clock4 className="text-green-400 animate-pulse" size={32} />
             <h2 className="text-3xl md:text-5xl font-black text-white">
-              <span className="text-red-400">URGENT:</span> Upcoming{" "}
-              <span className="bg-gradient-to-r from-red-400 to-orange-500 bg-clip-text text-transparent">
+              <span className="text-green-400">URGENT:</span> Upcoming{" "}
+              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
                 Travels
               </span>
             </h2>
           </div>
           <p className="text-lg text-white/80 max-w-2xl mx-auto font-semibold">
-            🔥 <span className="text-red-400">DEPARTURE IN:</span> Only few seats left! Book NOW before it's too late!
+            🔥 <span className="text-green-400">DEPARTURE IN:</span> Only few seats left! Book NOW before it's too late!
           </p>
         </div>
 
@@ -118,8 +118,8 @@ const UpcomingTravelsSection = () => {
               { label: 'MINS', value: timeLeft.minutes },
               { label: 'SECS', value: timeLeft.seconds }
             ].map((item, index) => (
-              <div key={item.label} className="bg-red-600/20 backdrop-blur-md border border-red-500/30 rounded-lg p-4">
-                <div className="text-2xl md:text-3xl font-black text-red-400">{item.value.toString().padStart(2, '0')}</div>
+              <div key={item.label} className="bg-green-600/20 backdrop-blur-md border border-green-500/30 rounded-lg p-4">
+                <div className="text-2xl md:text-3xl font-black text-green-400">{item.value.toString().padStart(2, '0')}</div>
                 <div className="text-xs font-bold text-white/70">{item.label}</div>
               </div>
             ))}
@@ -131,23 +131,23 @@ const UpcomingTravelsSection = () => {
           <Carousel className="w-full max-w-5xl mx-auto">
             <CarouselContent className="-ml-4">
               {upcomingDestinations.map((destination) => (
-                <CarouselItem key={destination.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="overflow-hidden bg-gradient-to-br from-red-950/40 to-orange-950/40 backdrop-blur-md border-red-500/30 hover:border-red-400/50 transition-all duration-300 hover:scale-105 group">
+                <CarouselItem key={destination.id} className="pl-4 basis-1/2">
+                  <Card className="overflow-hidden bg-gradient-to-br from-green-950/40 to-emerald-950/40 backdrop-blur-md border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105 group">
                     {/* Image */}
-                    <div className="relative overflow-hidden h-56">
+                    <div className="relative overflow-hidden h-64">
                       <img 
                         src={destination.image}
                         alt={destination.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <Badge className="absolute top-4 left-4 bg-red-600 text-white font-bold animate-pulse">
+                      <Badge className="absolute top-4 left-4 bg-green-600 text-white font-bold animate-pulse">
                         {destination.badge}
                       </Badge>
                       <div className="absolute top-4 right-4 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2 py-1 rounded-full">
                         <Star size={14} className="text-yellow-400 fill-current" />
                         <span className="text-sm font-bold text-white">{destination.rating}</span>
                       </div>
-                      <div className="absolute bottom-4 left-4 bg-red-600/80 backdrop-blur-md px-3 py-1 rounded-full">
+                      <div className="absolute bottom-4 left-4 bg-green-600/80 backdrop-blur-md px-3 py-1 rounded-full">
                         <span className="text-sm font-bold text-white">{destination.departure}</span>
                       </div>
                     </div>
@@ -156,17 +156,17 @@ const UpcomingTravelsSection = () => {
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3 text-sm">
                         <div className="flex items-center gap-1 text-white/80">
-                          <Calendar size={14} className="text-red-400" />
+                          <Calendar size={14} className="text-green-400" />
                           {destination.duration}
                         </div>
                         <div className="flex items-center gap-1 text-white/80">
-                          <Users size={14} className="text-red-400" />
+                          <Users size={14} className="text-green-400" />
                           {destination.groupSize}
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-2 mb-2">
-                        <MapPin size={16} className="text-red-400" />
+                        <MapPin size={16} className="text-green-400" />
                         <span className="text-sm text-white/70 font-medium">{destination.location}</span>
                       </div>
 
@@ -188,13 +188,13 @@ const UpcomingTravelsSection = () => {
                       </div>
 
                       {/* Price and Action */}
-                      <div className="flex items-center justify-between pt-4 border-t border-red-500/20">
+                      <div className="flex items-center justify-between pt-4 border-t border-green-500/20">
                         <div>
                           <span className="text-white/60 text-sm font-medium">Starting from</span>
-                          <div className="text-xl font-black text-red-400">{destination.price}</div>
+                          <div className="text-xl font-black text-green-400">{destination.price}</div>
                         </div>
                         <Button 
-                          className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
+                          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25"
                           size="sm"
                         >
                           BOOK NOW →
@@ -207,18 +207,18 @@ const UpcomingTravelsSection = () => {
             </CarouselContent>
             
             {/* Custom Navigation Buttons */}
-            <CarouselPrevious className="left-4 bg-red-600/80 border-red-500 hover:bg-red-500 text-white" />
-            <CarouselNext className="right-4 bg-red-600/80 border-red-500 hover:bg-red-500 text-white" />
+            <CarouselPrevious className="left-4 bg-green-600/80 border-green-500 hover:bg-green-500 text-white" />
+            <CarouselNext className="right-4 bg-green-600/80 border-green-500 hover:bg-green-500 text-white" />
           </Carousel>
         </div>
 
         {/* Urgent Call to Action */}
         <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-red-600/20 to-orange-600/20 backdrop-blur-md border border-red-500/30 rounded-2xl p-6 max-w-md mx-auto">
+          <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 backdrop-blur-md border border-green-500/30 rounded-2xl p-6 max-w-md mx-auto">
             <p className="text-white font-bold mb-4">⚡ LAST MINUTE BOOKINGS!</p>
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-black px-8 py-3 text-lg hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-red-500/30"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 py-3 text-lg hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-green-500/30"
             >
               🔥 BOOK ALL DESTINATIONS
             </Button>
