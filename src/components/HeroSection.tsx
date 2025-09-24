@@ -12,11 +12,14 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video/Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage}
-          alt="Mountain landscape with flowers"
+        <video 
+          src="https://video-cdn-five.vercel.app/videos/hero-videoH.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 video-overlay"></div>

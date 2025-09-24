@@ -4,6 +4,7 @@ import UpcomingTravelsSection from "@/components/UpcomingTravelsSection";
 import NationalDestinations from "@/components/NationalDestinations";
 import InternationalSection from "@/components/InternationalSection";
 import TrekkingSection from "@/components/TrekkingSection";
+import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import Footer from "@/components/Footer";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <NationalDestinations />
       <InternationalSection />
       <TrekkingSection />
+      <GoogleReviewsSection />
       <WhyChooseSection />
       <Footer />
     </div>

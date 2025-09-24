@@ -2,6 +2,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, CheckCircle, XCircle, Backpack } from "lucide-react";
+import { CustomizeTripDialog } from "./CustomizeTripDialog";
+import { useState } from "react";
 
 interface TimelineDialogProps {
   destinationId: string | null;
@@ -533,6 +535,8 @@ const itinerariesData = {
 };
 
 export const TimelineDialog = ({ destinationId, onClose }: TimelineDialogProps) => {
+  const [isCustomizeOpen, setIsCustomizeOpen] = useState(false);
+  
   if (!destinationId) return null;
 
   const itinerary = itinerariesData[destinationId as keyof typeof itinerariesData];
@@ -642,12 +646,20 @@ export const TimelineDialog = ({ destinationId, onClose }: TimelineDialogProps) 
               variant="outline" 
               className="border-primary/30 bg-primary/10 backdrop-blur-md hover:bg-primary/20 text-white"
               size="lg"
+              onClick={() => setIsCustomizeOpen(true)}
             >
               Customize Trip
             </Button>
           </div>
         </div>
       </DialogContent>
+      
+      {/* Customize Trip Dialog */}
+      <CustomizeTripDialog 
+        open={isCustomizeOpen}
+        onOpenChange={setIsCustomizeOpen}
+        destinationTitle={itinerary.title}
+      />
     </Dialog>
   );
 };

@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,9 +18,10 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: "Destinations", href: "#destinations" },
-    { name: "Experiences", href: "#experiences" },
-    { name: "About", href: "#about" },
+    { name: "Home", href: "/", type: "link" },
+    { name: "Destinations", href: "#destinations", type: "scroll" },
+    { name: "Experiences", href: "#experiences", type: "scroll" },
+    { name: "About", href: "/about", type: "link" },
   ];
 
   return (
@@ -32,23 +35,33 @@ const Navigation = () => {
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full bg-gradient-emerald flex items-center justify-center">
               <div className="w-4 h-4 bg-background rounded-full"></div>
             </div>
             <span className="text-xl font-bold text-white">Thrill Trail</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white/80 hover:text-white transition-colors duration-300 font-medium"
-              >
-                {item.name}
-              </a>
+              item.type === "link" ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-white/80 hover:text-white transition-colors duration-300 font-medium"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-white/80 hover:text-white transition-colors duration-300 font-medium"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
           </div>
 
