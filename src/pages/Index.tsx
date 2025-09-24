@@ -17,7 +17,9 @@ const Index = () => {
       <NationalDestinations />
       <InternationalSection />
       <TrekkingSection />
-      <GoogleReviewsSection />
+      <div id="reviews">
+        <GoogleReviewsSection />
+      </div>
       <WhyChooseSection />
       <Footer />
     </div>

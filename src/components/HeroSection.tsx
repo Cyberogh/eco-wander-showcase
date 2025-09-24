@@ -31,20 +31,20 @@ const HeroSection = () => {
           
           {/* Hero Text */}
           <div className="text-center lg:text-left animate-fade-in">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight md:leading-tight text-white">
               Paradise
               <br />
               awaits
               <br />
               <span className="gradient-text">your arrival</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-white/80 mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0">
               Tropical destinations that feel like a dream.
             </p>
-            <div className="flex flex-col gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 md:gap-4 justify-center lg:justify-start">
               <Button 
                 size="lg" 
-                className="bg-gradient-emerald hover:scale-105 transition-transform duration-300 glow px-8 py-4 text-lg"
+                className="bg-gradient-emerald hover:scale-105 transition-transform duration-300 glow px-6 md:px-8 py-3 md:py-4 text-base md:text-lg"
                 onClick={() => {
                   const nationalSection = document.querySelector('[data-section="national"]');
                   if (nationalSection) {
@@ -56,30 +56,30 @@ const HeroSection = () => {
               </Button>
               
               {/* Rating Widgets */}
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start mt-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-center justify-center lg:justify-start mt-2 md:mt-4">
                 {/* TripAdvisor Widget */}
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                  <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 md:px-4 py-2 rounded-lg border border-white/20">
+                  <div className="w-6 h-6 md:w-8 md:h-8 bg-green-600 rounded flex items-center justify-center">
                     <span className="text-white text-xs font-bold">TA</span>
                   </div>
                   <div className="flex flex-col">
                     <div className="flex items-center gap-1">
-                      <span className="text-yellow-400">★★★★★</span>
-                      <span className="text-white text-sm font-semibold">4.8</span>
+                      <span className="text-yellow-400 text-xs md:text-sm">★★★★★</span>
+                      <span className="text-white text-xs md:text-sm font-semibold">4.8</span>
                     </div>
                     <span className="text-white/80 text-xs">TripAdvisor</span>
                   </div>
                 </div>
 
                 {/* Google Rating Widget */}
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                  <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 md:px-4 py-2 rounded-lg border border-white/20">
+                  <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-600 rounded flex items-center justify-center">
                     <span className="text-white text-xs font-bold">G</span>
                   </div>
                   <div className="flex flex-col">
                     <div className="flex items-center gap-1">
-                      <span className="text-yellow-400">★★★★★</span>
-                      <span className="text-white text-sm font-semibold">4.7</span>
+                      <span className="text-yellow-400 text-xs md:text-sm">★★★★★</span>
+                      <span className="text-white text-xs md:text-sm font-semibold">4.7</span>
                     </div>
                     <span className="text-white/80 text-xs">Google Reviews</span>
                   </div>
