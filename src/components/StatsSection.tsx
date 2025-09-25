@@ -76,7 +76,7 @@ const StatsSection = () => {
     });
 
     return () => intervals.forEach(clearInterval);
-  }, [isVisible]);
+  }, [isVisible, counters]);
 
   return (
     <section ref={sectionRef} className="py-16 bg-background">
