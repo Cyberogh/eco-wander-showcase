@@ -36,9 +36,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-emerald flex items-center justify-center">
-              <div className="w-4 h-4 bg-background rounded-full"></div>
-            </div>
+            <img 
+              src="https://i.ibb.co/JFWcjW8Z/493854166-122113725602823820-7348013424259068912-n.jpg" 
+              alt="Thrill Trail Logo"
+              className="w-8 h-8 rounded-full object-cover"
+            />
             <span className="text-xl font-bold text-white">Thrill Trail</span>
           </Link>
 
@@ -84,6 +86,45 @@ const Navigation = () => {
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border shadow-lg">
+            <div className="container-custom py-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  item.type === "link" ? (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-white/80 hover:text-white transition-colors duration-300 font-medium py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="text-white/80 hover:text-white transition-colors duration-300 font-medium py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  )
+                ))}
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white w-full mt-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Get Started
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

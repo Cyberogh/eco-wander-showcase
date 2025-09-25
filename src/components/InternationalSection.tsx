@@ -26,7 +26,7 @@ const InternationalSection = () => {
           <Card className="overflow-hidden glass-card border-border/20">
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Image */}
-              <div className="relative h-80 lg:h-auto">
+              <div className="relative h-64 sm:h-80 lg:h-auto">
                 <img 
                   src="/api/placeholder/600/400"
                   alt="Colombo Sri Lanka"
@@ -38,7 +38,7 @@ const InternationalSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-8 flex flex-col justify-between">
+              <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between">
                 <div>
                   <h3 className="text-3xl font-bold text-white mb-4">Colombo</h3>
                   <p className="text-white/70 mb-6 leading-relaxed">
@@ -47,7 +47,7 @@ const InternationalSection = () => {
                   </p>
 
                   {/* Features */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-6">
                     <div className="flex items-center gap-2 text-white/60">
                       <span className="text-sm">Top Restaurants</span>
                     </div>
@@ -83,8 +83,8 @@ const InternationalSection = () => {
                 </div>
 
                 {/* Price and Actions */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
                     <div className="flex items-center gap-1">
                       <Star size={16} className="text-yellow-400 fill-current" />
                       <span className="text-white text-sm">4.7</span>
@@ -93,14 +93,14 @@ const InternationalSection = () => {
                       <Users size={16} className="text-primary" />
                       <span className="text-white/70 text-sm">Up to 8 guests</span>
                     </div>
-                    <div>
-                      <span className="text-2xl font-bold text-white">₹35,999</span>
-                    </div>
+                  </div>
+                  <div>
+                    <span className="text-2xl font-bold text-white">₹35,999</span>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
                   <Button 
                     className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition-transform duration-300 flex-1"
                     size="lg"
@@ -110,7 +110,7 @@ const InternationalSection = () => {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="border-primary/30 bg-primary/10 backdrop-blur-md hover:bg-primary/20 text-white"
+                    className="border-primary/30 bg-primary/10 backdrop-blur-md hover:bg-primary/20 text-white flex-1 sm:flex-initial"
                     size="lg"
                   >
                     Book Experience →
