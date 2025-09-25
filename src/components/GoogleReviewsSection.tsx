@@ -80,15 +80,17 @@ const GoogleReviewsSection = () => {
               <h2 className="text-3xl font-bold text-foreground">Our Google Reviews</h2>
             </div>
             
-            <div className="flex items-center gap-2 mb-8">
-              <div className="flex">
-                {renderStars(5)}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-2 mb-8">
+              <div className="flex items-center gap-2 leading-tight">
+                <div className="flex">
+                  {renderStars(5)}
+                </div>
+                <span className="text-lg font-semibold text-foreground">4.9 rating</span>
+                <span className="text-muted-foreground">of 39 reviews</span>
               </div>
-              <span className="text-lg font-semibold text-foreground">4.9 rating</span>
-              <span className="text-muted-foreground">of 39 reviews</span>
               <Button 
                 variant="default" 
-                className="ml-auto bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 sm:ml-auto"
                 onClick={() => window.open('https://www.google.com/search?sca_esv=ef5c9cfd86438e8a&sxsrf=AE3TifMoqmW0K6exXOEag30QPKmiTv1t-g:1758695244130&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8JyBAhpk226fuSjd2WM3k57vdgmwReacP4_b3-mgaEaeWMtjbCzguxWAfd7dfCIrHcTbYHC0Mkr-guv-pdxzcg9JLkMPnZFhY2_vhLItHK-QWkfAw%3D%3D&q=Thrill+Trail+Adventurers+Reviews&sa=X&ved=2ahUKEwj9ra2q4vCPAxXSaPUHHai6JRsQ0bkNegQINxAE&biw=1470&bih=766&dpr=2#lrd=0x399be363d7053bbf:0x782021150cfd31fd,3,,,,', '_blank')}
               >
                 Write a review

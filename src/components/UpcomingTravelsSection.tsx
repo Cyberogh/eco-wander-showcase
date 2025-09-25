@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { TimelineDialog } from "@/components/TimelineDialog";
 
 const upcomingDestinations = [
   {
@@ -54,6 +55,7 @@ const upcomingDestinations = [
 ];
 
 const UpcomingTravelsSection = () => {
+  const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -187,14 +189,23 @@ const UpcomingTravelsSection = () => {
                         ))}
                       </div>
 
-                      {/* Price and Action */}
-                      <div className="flex items-center justify-between pt-4 border-t border-red-500/20">
-                        <div>
-                          <span className="text-white/60 text-sm font-medium">Starting from</span>
-                          <div className="text-xl font-black text-green-400">{destination.price}</div>
+                      {/* Price and Actions */}
+                      <div className="flex flex-col gap-3 pt-4 border-t border-red-500/20">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-white/60 text-sm font-medium">Starting from</span>
+                            <div className="text-xl font-black text-green-400">{destination.price}</div>
+                          </div>
+                          <Button 
+                            onClick={() => setSelectedDestination(destination.id)}
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold hover:scale-105 transition-all duration-300"
+                            size="sm"
+                          >
+                            Explore
+                          </Button>
                         </div>
                         <Button 
-                          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25"
+                          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25 w-full"
                           size="sm"
                         >
                           BOOK NOW →
@@ -225,6 +236,11 @@ const UpcomingTravelsSection = () => {
           </div>
         </div>
       </div>
+
+      <TimelineDialog 
+        destinationId={selectedDestination}
+        onClose={() => setSelectedDestination(null)}
+      />
     </section>
   );
 };
