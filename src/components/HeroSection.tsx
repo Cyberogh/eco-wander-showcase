@@ -4,14 +4,73 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, MapPin, Users, Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Hls from "hls.js";
 import heroImage from "@/assets/hero-mountain.jpg";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hlsRef = useRef<Hls | null>(null);
   const [selectedDestination, setSelectedDestination] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [adults, setAdults] = useState(2);
   const [kids, setKids] = useState(0);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Your HLS video URL - update this to your actual .m3u8 URL
+    const videoSrc = "/videos/hero-video.m3u8";
+
+    // Check for native HLS support (Safari)
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = videoSrc;
+    } else if (Hls.isSupported()) {
+      // Configure HLS with optimized settings for smoother playback
+      const hls = new Hls({
+        maxBufferLength: 30,        // Buffer 30 seconds ahead
+        maxMaxBufferLength: 60,     // Maximum buffer of 60 seconds
+        maxBufferSize: 60 * 1000 * 1000, // 60 MB buffer
+        maxBufferHole: 0.5,         // Maximum gap in buffer
+        enableWorker: true,         // Use web worker for better performance
+        lowLatencyMode: false,      // Prioritize smooth playback over latency
+        backBufferLength: 10,       // Keep 10 seconds of back buffer
+      });
+
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      
+      // Error handling
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        if (data.fatal) {
+          console.error('Fatal HLS error:', data);
+          // Try to recover
+          switch (data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              hls.startLoad();
+              break;
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              hls.recoverMediaError();
+              break;
+            default:
+              hls.destroy();
+              break;
+          }
+        }
+      });
+
+      hlsRef.current = hls;
+    }
+
+    // Cleanup
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
+  }, []);
 
   const nationalDestinations = [
     "Munsiyari",
@@ -46,28 +105,20 @@ const HeroSection = () => {
   };
 
   return (
-    <section  id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-
         <video 
-
-          src="https://video-cdn-five.vercel.app/videos/hero-videoH.mp4"
-
+          ref={videoRef}
+          poster={heroImage}
           autoPlay
-
           loop
-
           muted
-
           playsInline
-
+          preload="auto"
           className="w-full h-full object-cover"
-
         />
-
         <div className="absolute inset-0 video-overlay"></div>
-
       </div>
       {/* Content */}
       <div className="relative z-10 container-custom py-20">
